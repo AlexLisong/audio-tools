@@ -1,6 +1,24 @@
 # Audio Tools
 
-Local speech-to-text and text-to-speech utilities using OpenAI Whisper and pyttsx3. No API keys required.
+Local speech-to-text and text-to-speech utilities using OpenAI Whisper and pyttsx3. No API keys required — everything runs offline on your machine.
+
+## What It Does
+
+- **transcribe.py** — Converts WAV audio recordings into text files. Supports English (auto-detected) and Chinese. Useful for transcribing meetings, voice memos, or interviews.
+- **speak.py** — Converts text into spoken English audio. Can play it live or save to a WAV file.
+
+## Quick Start
+
+```bash
+# 1. Install dependencies
+pip install -r requirements.txt
+
+# 2. Transcribe a recording to text
+python3 transcribe.py /path/to/recording.wav --output-dir ./output
+
+# 3. Convert the transcript to speech
+python3 speak.py --file ./output/recording.txt --output ./output/spoken.wav
+```
 
 ## Setup
 
@@ -61,6 +79,20 @@ python3 speak.py --file transcript.txt --rate 120 --volume 1.0
 | `--output` | Save to WAV file | plays live |
 | `--rate` | Words per minute | 160 |
 | `--volume` | 0.0 - 1.0 | 0.9 |
+
+## Claude Code Skills
+
+This project includes two Claude Code skills for hands-free usage:
+
+- **`/speech-to-text`** — Tell Claude to transcribe audio, e.g. "audio to text for /path/to/recording.wav"
+- **`/text-to-speech`** — Tell Claude to speak text, e.g. "convert transcript.txt to speech"
+
+Skill definitions are in the [`skills/`](skills/) directory. To install them locally:
+
+```bash
+cp skills/speech-to-text.md ~/.claude/skills/speech-to-text/SKILL.md
+cp skills/text-to-speech.md ~/.claude/skills/text-to-speech/SKILL.md
+```
 
 ## Dependencies
 
